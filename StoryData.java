@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoryData {
+    private String textWelcome = "Welcome to RATS IN PARIS";
+
     private int checkpointNumber = 0;
     private ArrayList<String> recipes;
     private ArrayList<String> questions;
