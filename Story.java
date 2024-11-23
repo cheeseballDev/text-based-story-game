@@ -1,8 +1,9 @@
 package StoryGame;
 
 import java.util.Scanner;
+import java.util.Random;
 
-public class Story implements Checkpoints {
+public class Story extends StoryData implements Checkpoints, Runnable {
 
     public Story() {
         clearScreen();
@@ -10,12 +11,12 @@ public class Story implements Checkpoints {
 
     void startGame() {
         Scanner userInput = new Scanner(System.in);
-        showDialogue("Welcome to RATS IN PARIS\nCreated by: Villar, Matthew from BSIT 307".toCharArray());
+        showDialogue(getDialogue(1).toCharArray());
         System.out.println("\nPRESS ENTER TO CONTINUE");
         userInput.nextLine();
         clearScreen();
         while (true) {
-            System.out.print("RATS IN PARIS\n1 - Start Game\n2 - Cookbook\n3 - Exit\n: ");
+            System.out.print(getDialogue(2));
             String choice = userInput.nextLine();
             checkChoice(choice);
         }
@@ -40,26 +41,34 @@ public class Story implements Checkpoints {
     void startIntro() {
         Scanner userInput = new Scanner(System.in);
         clearScreen();
-        showDialogue("In a world where rats are welcomed to become functional members of society.\nYmer, the marshal of town rat, was (un)fortunately selected to become an assistant for a sous-chef in a 5 star restaurant.".toCharArray());
+        showDialogue(getDialogue(3).toCharArray());
         System.out.println("PRESS ENTER TO CONTINUE.");
         userInput.nextLine();
         if (firstTime) {
-            showDialogue("(HOW TO PLAY) To progress in each level, you will need to select the corresponding steps in order to assist the sous chef in cooking the specified dish!".toCharArray());
+            showDialogue(getDialogue(4).toCharArray());
             System.out.println("\nPRESS ENTER TO CONTINUE");
             userInput.nextLine();
         }
     }
 
     void startLevel() {
-        
+        Random randomNumber = new Random();
+        while (true) {
+            
+        }
     }
 
     void showCookbook() {
 
     }
 
+    public void setCheckpointNumber() {
+        
+    }
 
-
+    public void setFirstTimeStatus() {
+        
+    }
     /*
      * 
      * MISC
@@ -74,7 +83,7 @@ public class Story implements Checkpoints {
         char[] characters = dialogue;
         for(int i = 0; i < characters.length; i++) {
             System.out.print(characters[i]);
-            run(50);
+            run();
         }
     }
 
@@ -85,14 +94,22 @@ public class Story implements Checkpoints {
 
         for(int i = 0; i < characters.length; i++) {
             System.out.print(characters[i]);
-            run(350);
+            runSlow();
         }
         clearScreen();
     }
 
-    public void run(int time) {
+    public void runSlow() {
         try {
-            Thread.sleep(time);
+            Thread.sleep(350);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void run() {
+        try {
+            Thread.sleep(50);
         } catch (Exception e) {
             e.printStackTrace();
         }
