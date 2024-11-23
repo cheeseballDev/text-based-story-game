@@ -2,9 +2,7 @@ package StoryGame;
 
 import java.util.Scanner;
 
-public class Story {
-
-    private boolean firstTime = true;
+public class Story implements Checkpoints {
 
     public Story() {
         clearScreen();
@@ -16,10 +14,6 @@ public class Story {
         System.out.println("\nPRESS ENTER TO CONTINUE");
         userInput.nextLine();
         clearScreen();
-        menuScreen(userInput);
-    }
-
-    void menuScreen(Scanner userInput) {
         while (true) {
             System.out.print("RATS IN PARIS\n1 - Start Game\n2 - Cookbook\n3 - Exit\n: ");
             String choice = userInput.nextLine();

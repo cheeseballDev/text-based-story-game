@@ -5,10 +5,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoryData {
-    private int checkpointNumber = 0;
     private ArrayList<String> recipes;
     private ArrayList<String> questions;
     private Map<String,String> AnswerAndChoice;
+
+    /*
+    String introDialogue = 
+
+    public String getDialogue(int number) {
+
+        return this.
+    }
+    */
 
     public StoryData() {
         AnswerAndChoice = new HashMap<String,String>();
@@ -18,34 +26,5 @@ public class StoryData {
         AnswerAndChoice.put("D","");
     }
 
-    
-    
-    /*
-     *  public String getRecipes() {
-
-    }
-
-    public String getQuestion() {
-
-    }
-
-    public String getChoiceSet() {
-        
-        return 
-    }
-
-
-    public String getAnswerKey() {
-        
-    }
-
-    public void setCheckpointNumber(int newCheckpointNumber) {
-        this.checkpointNumber = newCheckpointNumber;
-    }
-
-    public int getCheckpointNumber() {
-        return this.checkpointNumber;
-    }
-     */
 }
 
