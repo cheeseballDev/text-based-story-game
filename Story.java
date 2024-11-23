@@ -1,6 +1,5 @@
 package StoryGame;
 
-import java.nio.file.attribute.UserPrincipal;
 import java.util.Scanner;
 
 public class Story {
@@ -14,10 +13,9 @@ public class Story {
     void startGame() {
         Scanner userInput = new Scanner(System.in);
         showDialogue("Welcome to RATS IN PARIS\nCreated by: Villar, Matthew from BSIT 307".toCharArray());
-        System.out.println("PRESS ENTER TO CONTINUE");
+        System.out.println("\nPRESS ENTER TO CONTINUE");
         userInput.nextLine();
         clearScreen();
-        userInput.close();
         menuScreen(userInput);
     }
 
@@ -25,7 +23,6 @@ public class Story {
         while (true) {
             System.out.print("RATS IN PARIS\n1 - Start Game\n2 - Cookbook\n3 - Exit\n: ");
             String choice = userInput.nextLine();
-            userInput.close();
             checkChoice(choice);
         }
     }
@@ -47,18 +44,16 @@ public class Story {
     }
 
     void startIntro() {
-        Scanner userInput = new Scanner();
+        Scanner userInput = new Scanner(System.in);
         clearScreen();
         showDialogue("In a world where rats are welcomed to become functional members of society.\nYmer, the marshal of town rat, was (un)fortunately selected to become an assistant for a sous-chef in a 5 star restaurant.".toCharArray());
         System.out.println("PRESS ENTER TO CONTINUE.");
         userInput.nextLine();
         if (firstTime) {
             showDialogue("(HOW TO PLAY) To progress in each level, you will need to select the corresponding steps in order to assist the sous chef in cooking the specified dish!".toCharArray());
-            System.out.println("PRESS ENTER TO CONTINUE");
+            System.out.println("\nPRESS ENTER TO CONTINUE");
             userInput.nextLine();
         }
-
-        userInput.close();
     }
 
     void startLevel() {
@@ -85,7 +80,7 @@ public class Story {
         char[] characters = dialogue;
         for(int i = 0; i < characters.length; i++) {
             System.out.print(characters[i]);
-            run(25);
+            run(50);
         }
     }
 
