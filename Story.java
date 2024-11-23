@@ -1,7 +1,6 @@
 package StoryGame;
 
 import java.util.Scanner;
-import java.util.Random;
 
 public class Story extends StoryData implements Checkpoints, Runnable {
 
@@ -12,7 +11,7 @@ public class Story extends StoryData implements Checkpoints, Runnable {
     void startGame() {
         Scanner userInput = new Scanner(System.in);
         showDialogue(getDialogue(1).toCharArray());
-        System.out.println("\nPRESS ENTER TO CONTINUE");
+        System.out.println(getDialogue(0));
         userInput.nextLine();
         clearScreen();
         while (true) {
@@ -42,18 +41,20 @@ public class Story extends StoryData implements Checkpoints, Runnable {
         Scanner userInput = new Scanner(System.in);
         clearScreen();
         showDialogue(getDialogue(3).toCharArray());
-        System.out.println("PRESS ENTER TO CONTINUE.");
+        System.out.println(getDialogue(0));
+        clearScreen();
         userInput.nextLine();
         if (firstTime) {
             showDialogue(getDialogue(4).toCharArray());
-            System.out.println("\nPRESS ENTER TO CONTINUE");
+            System.out.println(getDialogue(0));
+            clearScreen();
             userInput.nextLine();
         }
     }
 
     void startLevel() {
-        Random randomNumber = new Random();
         while (true) {
+            showDialogue(getDialogue(5).toCharArray());
             
         }
     }
