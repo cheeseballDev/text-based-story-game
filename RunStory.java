@@ -1,7 +1,7 @@
 
 public class RunStory {
     public static void main(String[] args) {
-        Story story = new Story();
+        Game story = new Game();
         story.startGame();
     }
 }
