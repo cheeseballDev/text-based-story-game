@@ -1,7 +1,8 @@
 public class Story implements StoryFunctions {
 
     private String[] instructionsDialogues = new String[5];
-    private String[] GusteauDialogues = new String[10];
+    private String[] gusteauDialogues = new String[10];
+    private String[] tateDialogues = new String[10];
     private String[][] recipes = new String[5][5];
 
     public String getInstructionDialogue(int number) {
@@ -9,7 +10,11 @@ public class Story implements StoryFunctions {
     }
 
     public String getGusteauDialogue(int number) {
-        return GusteauDialogues[number];
+        return gusteauDialogues[number];
+    }
+
+    public String getTateDialogue(int number) {
+        return tateDialogues[number];
     }
 
     public Story() {
@@ -20,13 +25,14 @@ public class Story implements StoryFunctions {
         instructionsDialogues[4] = "(HOW TO PLAY)\nTo progress in each level, you will need to select the corresponding steps in order to assist the sous chef in cooking the specified dish!";
         instructionsDialogues[5] = "1 - Continue\n2 - Open Cookbook";
         instructionsDialogues[6] = "Your dish to cook is: ";
-        GusteauDialogues[0] = "Gusteau: Okay rat, It's your first day.\nGusteau: I'm sure you got the memo earlier, but in just case, you're going to be starting with the easy ones.";
-        GusteauDialogues[1] = "Gusteau: Hmm... Not bad for a rat, you’re lucky the first step was easy.";
-        GusteauDialogues[2] = "Gusteau: Again, don’t think too much of your success. We have barely even started.";
-        GusteauDialogues[3] = "Gusteau: This is unbelievable! A rat who can cook?!?!";
-        GusteauDialogues[4] = "";
-        GusteauDialogues[5] = "";
-        GusteauDialogues[6] = "";
-        
+        gusteauDialogues[0] = "Gusteau: Okay rat, It's your first day.\nGusteau: I'm sure you got the memo earlier, but in just case, you're going to be starting with the easy ones.";
+        gusteauDialogues[1] = "Gusteau: Hmm... Not bad for a rat, you're lucky the first step was easy.";
+        gusteauDialogues[2] = "Gusteau: Again, don't think too much of your success. We have barely even started.";
+        gusteauDialogues[3] = "Gusteau: This is unbelievable! A rat who can cook?!?!";
+        gusteauDialogues[4] = "";
+        gusteauDialogues[5] = "";
+        gusteauDialogues[6] = "";
+        tateDialogues[0] = "";
     }
+
 }
