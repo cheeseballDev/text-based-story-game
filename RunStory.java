@@ -1,4 +1,3 @@
-package StoryGame;
 
 public class RunStory {
     public static void main(String[] args) {

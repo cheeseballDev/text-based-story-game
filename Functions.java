@@ -1,6 +1,5 @@
-package StoryGame;
 
 public interface Functions {
-    String getDialogue(int number);
+    String getInstructionDialogue(int number);
     String getNPCDialogue(int number);
 }

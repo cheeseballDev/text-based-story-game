@@ -1,41 +1,20 @@
-package StoryGame;
-
+    
 import java.util.ArrayList;
-import java.util.Map;
+import java.util.HashMap;
 import java.util.List;
-public class StoryData implements Functions {
-    private String[] instructionsDialogues = new String[4];
-    private String[] NPCDialogues = new String[10];
-    private String[][] recipes = new String[5][5];
-    private String step;
-    private List<String> choices;
-    private String correctAnswer;
-    private List<StoryData> frenchCrepes = new HashMap<>();
-    private List<StoryData> coqAuVin = new HashMap<>();
-    private List<StoryData> bouillabasse = new HashMap<>();
-    private List<StoryData> cremeBrulee = new HashMap<>();
-    private List<StoryData> ratatouille = new HashMap<>();
-    private Map<Integer, List<Object>> levels = new HashMaps<>();
+import java.util.Map;
+import java.util.Random;
+import java.util.Scanner;
 
-    public String getInstructionDialogue(int number) {
-        return instructionsDialogues[number];
-    }
+public class Game extends Story implements Checkpoints, Runnable {
+    private List<Object> frenchCrepes = new ArrayList<>();
+    private List<Object> coqAuVin = new ArrayList<>();
+    private List<Object> bouillabasse = new ArrayList<>();
+    private List<Object> cremeBrulee = new ArrayList<>();
+    private List<Object> ratatouille = new ArrayList<>();
+    public Map<Integer, List<Object>> levels = new HashMap<>();
 
-    public String getNPCDialogue(int number) {
-        return NPCDialogues[number];
-    }
-
-    public StoryData(String step, List<String> choices,  String correctAnswer) {
-        instructionsDialogues[0] = "\nPRESS ENTER TO CONTINUE.";
-        instructionsDialogues[1] = "Welcome to RATS IN PARIS\nCreated by: Villar, Matthew from BSIT 307";
-        instructionsDialogues[2] = "RATS IN PARIS\n1 - Start Game\n2 - Cookbook\n3 - Exit\n:";
-        instructionsDialogues[3] = "In a world where rats are welcomed to become functional members of society.\nYmer, the marshal of town rat, was (un)fortunately selected to become an assistant for a sous-chef in a 5 star restaurant.\n";
-        instructionsDialogues[4] = "(HOW TO PLAY) To progress in each level, you will need to select the corresponding steps in order to assist the sous chef in cooking the specified dish!";
-        NPCDialogues[5] = "Gusteau: Okay rat, It's your first day.\nI'm sure you got the memo earlier, but in just case, you're going to be starting with the easy ones.";
-        NPCDialogues[6] = "Gusteau: Hmm... Not bad for a rat, you’re lucky the first step was easy.";
-        NPCDialogues[7] = "Gusteau: Again, don’t think too much of your success. We have barely even started.";
-        NPCDialogues[8] = "Gusteau: This is unbelievable! A rat who can cook?!?!";
-
+    public Game() {
         frenchCrepes.add(new StoryData("Step 1 - Batter preparation:", List.of(
             "\nA. Whisk flour, eggs, milk, sugar, salt.", 
             "\nB. Mix flour, eggs, water, salt.", 
@@ -135,6 +114,118 @@ public class StoryData implements Functions {
             "\nD. Bake in a microwave."), 
             "A"));
         levels.put(5, ratatouille);
+        clearScreen();
+    }
+
+    void startGame() {
+        Scanner userInput = new Scanner(System.in);
+        showDialogue(getInstructionDialogue(1).toCharArray());
+        System.out.println(getInstructionDialogue(0));
+        userInput.nextLine();
+        clearScreen();
+        while (true) {
+            System.out.print(getInstructionDialogue(2));
+            String choice = userInput.nextLine();
+            checkChoice(userInput, choice);
+        }
+    }
+
+    void checkChoice(Scanner userInput, String choice) {
+        switch (choice) {
+            case "1":
+                startIntro(userInput);
+                break;
+            case "2":
+                showCookbook(userInput);
+                break;
+            case "3":
+                System.exit(0);
+                break;
+            default:
+            printErrorMessage("Invalid choice! Please try again");
+        }
+    }
+
+    void startIntro(Scanner userInput) {
+        clearScreen();
+        showDialogue(getInstructionDialogue(3).toCharArray());
+        System.out.println(getInstructionDialogue(0));
+        clearScreen();
+        userInput.nextLine();
+        if (firstTime) {
+            showDialogue(getInstructionDialogue(4).toCharArray());
+            System.out.println(getInstructionDialogue(0));
+            clearScreen();
+            userInput.nextLine();
+        }
+        startLevel(userInput);
+    }
+
+    void startLevel(Scanner userInput) {
+        Random randomNumber = new Random();
+        showDialogue(getNPCDialogue(0).toCharArray());
+        System.out.println(getInstructionDialogue(0));
+        userInput.nextLine();
+    }
+
+    void fail() {
+
+    }
+
+    void showCookbook(Scanner userInput) {
+
+    }
+
+    public void setCheckpointNumber() {
+        
+    }
+
+    public void setFirstTimeStatus() {
+        
+    }
+    /*
+     * 
+     * MISC
+     * 
+     */
+    private void clearScreen() {
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+    }
+
+    private void showDialogue(char[] dialogue) {
+        char[] characters = dialogue;
+        for(int i = 0; i < characters.length; i++) {
+            System.out.print(characters[i]);
+            run();
+        }
+    }
+
+    private void printErrorMessage(String errorMessage) {
+        clearScreen();
+        System.out.print(errorMessage);
+        char[] characters = {'.', ' ', '.', ' ', '.', ' ', '.'};
+
+        for(int i = 0; i < characters.length; i++) {
+            System.out.print(characters[i]);
+            runSlow();
+        }
+        clearScreen();
+    }
+
+    public void runSlow() {
+        try {
+            Thread.sleep(350);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void run() {
+        try {
+            Thread.sleep(50);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
-
