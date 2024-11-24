@@ -1,4 +1,3 @@
-package StoryGame;
 
 public interface Checkpoints {
     public boolean firstTime = true;

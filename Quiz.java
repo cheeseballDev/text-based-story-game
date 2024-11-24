@@ -24,7 +24,7 @@ public class Quiz implements QuizFunctions {
     }
 
     public String changeToString() {
-        return step + "\nChoices" + String.join("", choices);
+        return cuisine + step + "\nChoices" + String.join("", choices);
     }
 
     public Quiz(String cuisine, String step, List<String> choices,  String correctAnswer) {
