@@ -6,10 +6,11 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game extends Data implements Checkpoints, Runnable {
+public class Game extends Data implements Checkpoints, Runnable, Miscellaneous {
     private boolean firstTime;
     private int levelNumber;
     private int gusteauDialogueNumber = 1;
+    private boolean startLevel = true;
     private List<Quiz> frenchCrepes = new ArrayList<>();
     private List<Quiz> coqAuVin = new ArrayList<>();
     private List<Quiz> bouillabasse = new ArrayList<>();
@@ -170,17 +171,14 @@ public class Game extends Data implements Checkpoints, Runnable {
     void startLevel(Scanner userInput) {
         setFirstTimeStatusToFalse();
         Random randomNumber = new Random();
-        this.levelNumber = randomNumber.nextInt(1,4);
+        this.levelNumber = randomNumber.nextInt(1,5);
 
         showDialogue(getGusteauDialogue(0).toCharArray());
         System.out.println(getInstructionDialogue(0));
         userInput.nextLine();
         clearScreen();
-        
-        boolean startLevel = true;
         while (true) {
             for (Quiz quiz : levels.get(levelNumber)) {
-                while(gusteauDialogueNumber < 7) {
                     while (startLevel) {
                         showDialogue((getInstructionDialogue(6) + quiz.getCuisine()).toCharArray());
                         System.out.print(getInstructionDialogue(5));
@@ -193,6 +191,8 @@ public class Game extends Data implements Checkpoints, Runnable {
                         clearScreen();
                         break;
                     }
+
+                    while(gusteauDialogueNumber < 8) {
                         System.out.print(quiz.changeToString());
                         String multipleChoiceAnswer = userInput.nextLine().toUpperCase().trim();
     
@@ -230,8 +230,11 @@ public class Game extends Data implements Checkpoints, Runnable {
                         }
                     gusteauDialogueNumber++;
                 }
+                if (gusteauDialogueNumber == 8) {
+                    break;
+                }
             }
-            if (gusteauDialogueNumber == 7) {
+            if (gusteauDialogueNumber == 8) {
                 break;
             }
         }
@@ -257,17 +260,19 @@ public class Game extends Data implements Checkpoints, Runnable {
     public void setFirstTimeStatusToFalse() {
         this.firstTime = false;
     }
+
+
     /*
      * 
      * MISC
      * 
      */
-    private void clearScreen() {
+    public void clearScreen() {
         System.out.print("\033[H\033[2J");  
         System.out.flush();  
     }
 
-    private void showDialogue(char[] dialogue) {
+    public void showDialogue(char[] dialogue) {
         char[] characters = dialogue;
         for(int i = 0; i < characters.length; i++) {
             System.out.print(characters[i]);
@@ -275,7 +280,7 @@ public class Game extends Data implements Checkpoints, Runnable {
         }
     }
 
-    private void printErrorMessage(String errorMessage) {
+    public void printErrorMessage(String errorMessage) {
         clearScreen();
         System.out.print(errorMessage);
         char[] characters = {'.', ' ', '.', ' ', '.', ' ', '.'};
@@ -288,7 +293,7 @@ public class Game extends Data implements Checkpoints, Runnable {
     }
     public void run() {
         try {
-            Thread.sleep(5);
+            Thread.sleep(350);
         } catch (Exception e) {
             e.printStackTrace();
         }

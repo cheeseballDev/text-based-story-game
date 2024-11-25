@@ -18,7 +18,7 @@ public class Data implements StoryFunctions {
         return tateDialogues[number];
     }
 
-    public Story() {
+    public Data() {
         instructionsDialogues[0] = "\nPRESS ENTER TO CONTINUE.";
         instructionsDialogues[1] = "Welcome to RATS IN PARIS\nCreated by: Villar, Matthew from BSIT 307";
         instructionsDialogues[2] = "RATS IN PARIS\n1 - Start Game\n2 - Cookbook\n3 - Exit\n> ";
@@ -33,7 +33,7 @@ public class Data implements StoryFunctions {
         gusteauDialogues[4] = "Gusteau: Not going to lie rat, you impressed me with the first dish.\nGusteau: Let's see if you can handle the second one";
         gusteauDialogues[5] = "Gusteau: Well done, rat.\nGusteau: Proceed with post-haste! The customer is waiting!";
         gusteauDialogues[6] = "Gusteau: You know, I'm starting to like you, rat. \nGusteau: You're not bad at all. Let's get going.";
-        gusteauDialogues[7] = "Gusteau: Rat, you have gained my respect. And for that-";
+        gusteauDialogues[7] = "Gusteau: Rat, you have gained my respect. And for that---";
         tateDialogues[0] = "";
         deathDialogues[0] = "";
     }
