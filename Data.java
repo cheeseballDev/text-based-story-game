@@ -1,4 +1,4 @@
-public class Story implements StoryFunctions {
+public class Data implements StoryFunctions {
 
     private String[] instructionsDialogues = new String[10];
     private String[] gusteauDialogues = new String[10];

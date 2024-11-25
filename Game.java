@@ -6,14 +6,15 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game extends Story implements Checkpoints, Runnable {
+public class Game extends Data implements Checkpoints, Runnable {
     private boolean firstTime;
+    private int levelNumber;
+    private int gusteauDialogueNumber = 1;
     private List<Quiz> frenchCrepes = new ArrayList<>();
     private List<Quiz> coqAuVin = new ArrayList<>();
     private List<Quiz> bouillabasse = new ArrayList<>();
     private List<Quiz> cremeBrulee = new ArrayList<>();
     private List<Quiz> ratatouille = new ArrayList<>();
-    private int levelNumber;
     private Map<Integer, List<Quiz>> levels = new HashMap<>();
 
     public Game() {
@@ -177,10 +178,9 @@ public class Game extends Story implements Checkpoints, Runnable {
         clearScreen();
         
         boolean startLevel = true;
-        int i = 1;
         while (true) {
             for (Quiz quiz : levels.get(levelNumber)) {
-                while(i<7) {
+                while(gusteauDialogueNumber < 7) {
                     while (startLevel) {
                         showDialogue((getInstructionDialogue(6) + quiz.getCuisine()).toCharArray());
                         System.out.print(getInstructionDialogue(5));
@@ -198,14 +198,14 @@ public class Game extends Story implements Checkpoints, Runnable {
     
                         if (!multipleChoiceAnswer.equals("A") && !multipleChoiceAnswer.equals("B") && !multipleChoiceAnswer.equals("C") && !multipleChoiceAnswer.equals("D")) {
                             printErrorMessage("Invalid entry! Please try again");
-                            i--;
+                            gusteauDialogueNumber--;
                             continue;
                         } else if (!multipleChoiceAnswer.equals(quiz.getCorrectAnswer())) {
                             fail(userInput);
                         }
     
                         clearScreen();
-                        showDialogue(getGusteauDialogue(i).toCharArray());
+                        showDialogue(getGusteauDialogue(gusteauDialogueNumber).toCharArray());
                         System.out.println(getInstructionDialogue(0));
                         userInput.nextLine();
                         clearScreen();
@@ -213,10 +213,10 @@ public class Game extends Story implements Checkpoints, Runnable {
                     }
     
                     startLevel = false;
-                    i++;
-                    if (i == 4) {
+                    gusteauDialogueNumber++;
+                    if (gusteauDialogueNumber == 4) {
                         startLevel = true;
-                        showDialogue(getGusteauDialogue(i).toCharArray());
+                        showDialogue(getGusteauDialogue(gusteauDialogueNumber).toCharArray());
                         System.out.println(getInstructionDialogue(0));
                         userInput.nextLine();
                         clearScreen();
@@ -227,10 +227,11 @@ public class Game extends Story implements Checkpoints, Runnable {
                             }
                             this.levelNumber = tempNumber;
                             break;
-                    }
+                        }
+                    gusteauDialogueNumber++;
                 }
             }
-            if (i == 7) {
+            if (gusteauDialogueNumber == 7) {
                 break;
             }
         }
@@ -244,16 +245,13 @@ public class Game extends Story implements Checkpoints, Runnable {
 
     
     void fail(Scanner userInput) {
+        gusteauDialogueNumber = 1;
         System.out.println("FAILED");
         startLevel(userInput);
     }  
 
     void showCookbook(Scanner userInput) {
 
-    }
-
-    public void setCheckpointNumber() {
-        
     }
 
     public void setFirstTimeStatusToFalse() {
