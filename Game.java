@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Game extends Data implements Checkpoints, Runnable, Miscellaneous {
+public class Game extends Data implements GameFunctions, Runnable, Miscellaneous {
     private boolean firstTime;
     private int levelNumber;
     private int gusteauDialogueNumber = 1;
@@ -179,18 +179,18 @@ public class Game extends Data implements Checkpoints, Runnable, Miscellaneous {
         clearScreen();
         while (true) {
             for (Quiz quiz : levels.get(levelNumber)) {
-                    while (startLevel) {
-                        showDialogue((getInstructionDialogue(6) + quiz.getCuisine()).toCharArray());
-                        System.out.print(getInstructionDialogue(5));
-                        String choice = userInput.nextLine();
-                        if (choice.equals("2")) {
-                            showCookbook(userInput);
-                        } else if (!choice.equals("1")) {
-                            printErrorMessage("Invalid choice! Please try again");
-                        }
-                        clearScreen();
-                        break;
+                while (startLevel) {
+                    showDialogue((getInstructionDialogue(6) + quiz.getCuisine()).toCharArray());
+                    System.out.print(getInstructionDialogue(5));
+                    String choice = userInput.nextLine();
+                    if (choice.equals("2")) {
+                        showCookbook(userInput);
+                    } else if (!choice.equals("1")) {
+                        printErrorMessage("Invalid choice! Please try again");
                     }
+                    clearScreen();
+                    break;
+                }
 
                     while(gusteauDialogueNumber < 8) {
                         System.out.print(quiz.changeToString());
@@ -242,19 +242,36 @@ public class Game extends Data implements Checkpoints, Runnable, Miscellaneous {
     }
 
     void bossLevel(Scanner userInput) {
-        System.out.println("Start boss level");
-        userInput.nextLine();
+        System.out.println("Start boss level (to be implemented)");
+        System.exit(0);
     }
 
     
     void fail(Scanner userInput) {
         gusteauDialogueNumber = 1;
-        System.out.println("FAILED");
-        startLevel(userInput);
+        Random randomNumber = new Random();
+        showDialogue(getDeathDialogue(randomNumber.nextInt(0,2)).toCharArray());
+        while (true) {
+            System.out.print(getInstructionDialogue(7));
+            String choice = userInput.nextLine();
+            switch (choice) {
+                case "1":
+                    startLevel(userInput);
+                    clearScreen();
+                case "2":
+                    showCookbook(userInput);
+                case "3":
+                    startGame();
+                case "4":
+                    System.exit(0);
+                default:
+                    printErrorMessage("Invalid choice! Please try again");
+            }
+        }
     }  
 
     void showCookbook(Scanner userInput) {
-
+        clearScreen();
     }
 
     public void setFirstTimeStatusToFalse() {
