@@ -170,7 +170,6 @@ public class Game extends Story implements Checkpoints, Runnable {
         setFirstTimeStatusToFalse();
         Random randomNumber = new Random();
         this.levelNumber = randomNumber.nextInt(1,4);
-        System.out.println(levelNumber);
 
         showDialogue(getGusteauDialogue(0).toCharArray());
         System.out.println(getInstructionDialogue(0));
@@ -181,60 +180,68 @@ public class Game extends Story implements Checkpoints, Runnable {
         int i = 1;
         while (true) {
             for (Quiz quiz : levels.get(levelNumber)) {
-                while (startLevel) {
-                    showDialogue((getInstructionDialogue(6) + quiz.getCuisine()).toCharArray());
-                    System.out.print(getInstructionDialogue(5));
-                    String choice = userInput.nextLine();
-                    if (choice.equals("2"))
-                        showCookbook(userInput);
-                    clearScreen();
-                    break;
-                }
-    
-                while(i < 6){
-                    System.out.print(quiz.changeToString());
-                    String multipleChoiceAnswer = userInput.nextLine().toUpperCase().trim();
-    
-                    if (!multipleChoiceAnswer.equals("A") && !multipleChoiceAnswer.equals("B") && !multipleChoiceAnswer.equals("C") && !multipleChoiceAnswer.equals("D")) {
-                        printErrorMessage("Invalid entry! Please try again");
-                        i--;
-                        continue;
-                    } else if (!multipleChoiceAnswer.equals(quiz.getCorrectAnswer())) {
-                        fail(userInput);
-                    }
-    
-                    clearScreen();
-                    showDialogue(getGusteauDialogue(i).toCharArray());
-                    System.out.println(getInstructionDialogue(0));
-                    userInput.nextLine();
-                    clearScreen();
-                    break;
-                }
-                startLevel = false;
-                i++;
-                if (i == 4) {
-                    startLevel = true;
-                    showDialogue(getGusteauDialogue(i).toCharArray());
-                    System.out.println(getInstructionDialogue(0));
-                    userInput.nextLine();
-                    clearScreen();
-                    while (true) {
-                        int tempNumber = randomNumber.nextInt(1,4);
-                        if (tempNumber == this.levelNumber) {
-                            continue;
+                while(i<7) {
+                    while (startLevel) {
+                        showDialogue((getInstructionDialogue(6) + quiz.getCuisine()).toCharArray());
+                        System.out.print(getInstructionDialogue(5));
+                        String choice = userInput.nextLine();
+                        if (choice.equals("2")) {
+                            showCookbook(userInput);
+                        } else if (!choice.equals("1")) {
+                            printErrorMessage("Invalid choice! Please try again");
                         }
-                        this.levelNumber = tempNumber;
+                        clearScreen();
                         break;
                     }
-                    
+                        System.out.print(quiz.changeToString());
+                        String multipleChoiceAnswer = userInput.nextLine().toUpperCase().trim();
+    
+                        if (!multipleChoiceAnswer.equals("A") && !multipleChoiceAnswer.equals("B") && !multipleChoiceAnswer.equals("C") && !multipleChoiceAnswer.equals("D")) {
+                            printErrorMessage("Invalid entry! Please try again");
+                            i--;
+                            continue;
+                        } else if (!multipleChoiceAnswer.equals(quiz.getCorrectAnswer())) {
+                            fail(userInput);
+                        }
+    
+                        clearScreen();
+                        showDialogue(getGusteauDialogue(i).toCharArray());
+                        System.out.println(getInstructionDialogue(0));
+                        userInput.nextLine();
+                        clearScreen();
+                        break;
+                    }
+    
+                    startLevel = false;
+                    i++;
+                    if (i == 4) {
+                        startLevel = true;
+                        showDialogue(getGusteauDialogue(i).toCharArray());
+                        System.out.println(getInstructionDialogue(0));
+                        userInput.nextLine();
+                        clearScreen();
+                        while (true) {
+                            int tempNumber = randomNumber.nextInt(1,4);
+                            if (tempNumber == this.levelNumber) {
+                                continue;
+                            }
+                            this.levelNumber = tempNumber;
+                            break;
+                    }
                 }
             }
+            if (i == 7) {
+                break;
+            }
         }
+        bossLevel(userInput);
     }
 
-    void loadQuiz() {
-        
+    void bossLevel(Scanner userInput) {
+        System.out.println("Start boss level");
+        userInput.nextLine();
     }
+
     
     void fail(Scanner userInput) {
         System.out.println("FAILED");

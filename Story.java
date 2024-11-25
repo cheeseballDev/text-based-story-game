@@ -3,6 +3,7 @@ public class Story implements StoryFunctions {
     private String[] instructionsDialogues = new String[10];
     private String[] gusteauDialogues = new String[10];
     private String[] tateDialogues = new String[10];
+    private String[] deathDialogues = new String[3];
     private String[][] recipes = new String[5][5];
 
     public String getInstructionDialogue(int number) {
@@ -30,9 +31,11 @@ public class Story implements StoryFunctions {
         gusteauDialogues[2] = "Gusteau: Again, don't think too much of your success. We have barely even started.";
         gusteauDialogues[3] = "Gusteau: This is unbelievable! A rat who can cook?!?!";
         gusteauDialogues[4] = "Gusteau: Not going to lie rat, you impressed me with the first dish.\nGusteau: Let's see if you can handle the second one";
-        gusteauDialogues[5] = "";
-        gusteauDialogues[6] = "";
+        gusteauDialogues[5] = "Gusteau: Well done, rat.\nGusteau: Proceed with post-haste! The customer is waiting!";
+        gusteauDialogues[6] = "Gusteau: You know, I'm starting to like you, rat. \nGusteau: You're not bad at all. Let's get going.";
+        gusteauDialogues[7] = "Gusteau: Rat, you have gained my respect. And for that-";
         tateDialogues[0] = "";
+        deathDialogues[0] = "";
     }
 
 }
