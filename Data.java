@@ -1,9 +1,9 @@
 public class Data implements DataFunctions {
 
     private String[] instructionsDialogues = new String[10];
-    private String[] gusteauDialogues = new String[7];
+    private String[] gusteauDialogues = new String[8];
     private String[] tateDialogues = new String[10];
-    private String[] deathDialogues = new String[2];
+    private String[] deathDialogues = new String[3];
     private String[][] recipes = new String[5][5];
 
     public String getInstructionDialogue(int number) {
@@ -30,7 +30,7 @@ public class Data implements DataFunctions {
         instructionsDialogues[4] = "(HOW TO PLAY)\nTo progress in each level, you will need to select the corresponding steps in order to assist the sous chef in cooking the specified dish!";
         instructionsDialogues[5] = "\n1 - Continue\n2 - Open Cookbook\n> ";
         instructionsDialogues[6] = "Your dish to cook is: ";
-        instructionsDialogues[7] = "1 - Restart\n2 - Cookbook\n3 - Back to Menu\n4 - Exit\n> ";
+        instructionsDialogues[7] = "\n1 - Restart\n2 - Cookbook\n3 - Back to Menu\n4 - Exit\n> ";
         gusteauDialogues[0] = "Gusteau: Okay rat, It's your first day.\nGusteau: I'm sure you got the memo earlier, but in just case, you're going to be starting with the easy ones.";
         gusteauDialogues[1] = "Gusteau: Hmm... Not bad for a rat, you're lucky the first step was easy.";
         gusteauDialogues[2] = "Gusteau: Again, don't think too much of your success. We have barely even started.";

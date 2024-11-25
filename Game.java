@@ -185,6 +185,7 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
                     String choice = userInput.nextLine();
                     if (choice.equals("2")) {
                         showCookbook(userInput);
+                        continue;
                     } else if (!choice.equals("1")) {
                         printErrorMessage("Invalid choice! Please try again");
                     }
@@ -248,6 +249,7 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
 
     
     void fail(Scanner userInput) {
+        clearScreen();
         gusteauDialogueNumber = 1;
         Random randomNumber = new Random();
         showDialogue(getDeathDialogue(randomNumber.nextInt(0,2)).toCharArray());
@@ -256,12 +258,15 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
             String choice = userInput.nextLine();
             switch (choice) {
                 case "1":
-                    startLevel(userInput);
                     clearScreen();
+                    startLevel(userInput);
+                    break;
                 case "2":
                     showCookbook(userInput);
+                    continue;
                 case "3":
                     startGame();
+                    break;
                 case "4":
                     System.exit(0);
                 default:
@@ -310,7 +315,7 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
     }
     public void run() {
         try {
-            Thread.sleep(350);
+            Thread.sleep(5);
         } catch (Exception e) {
             e.printStackTrace();
         }
