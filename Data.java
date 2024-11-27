@@ -4,7 +4,7 @@ public class Data implements DataFunctions {
     private String[] gusteauDialogues = new String[8];
     private String[] tateDialogues = new String[10];
     private String[] deathDialogues = new String[3];
-    private String[][] recipes = new String[5][5];
+    private String[]recipes = new String[5];
 
     public String getInstructionDialogue(int number) {
         return instructionsDialogues[number];
@@ -43,5 +43,10 @@ public class Data implements DataFunctions {
         deathDialogues[0] = "YOU FAILED!\nYou chose the incorrect step!\nYmer will be turned into rat skin for a human's dessert as payment..";
         deathDialogues[1] = "YOU FAILED!\nYou chose the incorrect step!\nYmer got fired, thus losing his ability to provide for his family.";
         deathDialogues[2] = "YOU FAILED!\nYou chose the incorrect step!\nYmer will forever be imprisoned, never to be seen again.";
+        recipes[0] = "French Crepes:\n> Step 1: Batter Preparation - Whisk flour, eggs, milk, sugar, salt.\n> Step 2: Cooking the Crepe - Cook in a medium-heat skillet.\n> Step 3: Filling the Crepe - Fill with any combination of sweet or savory ingredients.";
+        recipes[1] = "Coq au Vin:\n> Step 1: Browning the Chicken - Brown in butter.\n> Step 2: Simmering - Simmer with red wine, mushrooms, and carrots.\n> Step 3: Finishing - Finish with a sprinkle of parsley.";
+        recipes[2] = "Bouillabaisse:\n> Step 1: Base Preparation - Sauté onions, garlic, fennel.\n> Step 2: Adding Seafood - Add mussels, clams, and crab.\n> Step 3: Serving - Serve with crusty bread and rouille.";
+        recipes[3] = "Creme brulee:\n> Step 1: Making the Custard - Whisk together eggs, sugar, and heavy cream.\n> Step 2: Baking - Bake in a preheated oven at 350°F.\n> Step 3: Torching - Torch with a kitchen torch.";
+        recipes[4] = "Ratatouille:\n> Step 1: Vegetable Preparation - Cut vegetables into cubes.\n> Step 2: Simmering - Simmer for 30 minutes.\n> Step 3: Baking - Bake uncovered."; 
     }
 }
