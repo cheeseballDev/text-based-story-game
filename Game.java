@@ -135,7 +135,7 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
         }
     }
 
-    void checkChoice(Scanner userInput, String choice) {
+    private void checkChoice(Scanner userInput, String choice) {
         switch (choice) {
             case "1":
                 startIntro(userInput);
@@ -151,7 +151,7 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
         }
     }
 
-    void startIntro(Scanner userInput) {
+    private void startIntro(Scanner userInput) {
         clearScreen();
         showDialogue(getInstructionDialogue(3).toCharArray());
         System.out.println(getInstructionDialogue(0));
@@ -168,7 +168,7 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
         startLevel(userInput);
     }
 
-    void startLevel(Scanner userInput) {
+    private void startLevel(Scanner userInput) {
         setFirstTimeStatusToFalse();
         Random randomNumber = new Random();
         this.levelNumber = randomNumber.nextInt(1,5);
@@ -242,13 +242,13 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
         bossLevel(userInput);
     }
 
-    void bossLevel(Scanner userInput) {
+    private void bossLevel(Scanner userInput) {
         System.out.println("Start boss level (to be implemented)");
         System.exit(0);
     }
 
     
-    void fail(Scanner userInput) {
+    private void fail(Scanner userInput) {
         clearScreen();
         gusteauDialogueNumber = 1;
         Random randomNumber = new Random();
@@ -275,8 +275,9 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
         }
     }  
 
-    void showCookbook(Scanner userInput) {
+    private void showCookbook(Scanner userInput) {
         clearScreen();
+
     }
 
     public void setFirstTimeStatusToFalse() {

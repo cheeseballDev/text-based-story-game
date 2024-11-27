@@ -4,7 +4,7 @@ public class Data implements DataFunctions {
     private String[] gusteauDialogues = new String[8];
     private String[] tateDialogues = new String[10];
     private String[] deathDialogues = new String[3];
-    private String[]recipes = new String[5];
+    private String[] recipes = new String[5];
 
     public String getInstructionDialogue(int number) {
         return instructionsDialogues[number];

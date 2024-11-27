@@ -1,6 +1,7 @@
 
 public interface DataFunctions {
-    String getInstructionDialogue(int number);
-    String getGusteauDialogue(int number);
-    String getTateDialogue(int number);
+    public String getInstructionDialogue(int number);
+    public String getGusteauDialogue(int number);
+    public String getTateDialogue(int number);
+    public String getDeathDialogue(int number);
 }
