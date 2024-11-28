@@ -1,4 +1,3 @@
-
 public interface DataFunctions {
     public String getInstructionDialogue(int number);
     public String getGusteauDialogue(int number);
