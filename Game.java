@@ -278,7 +278,6 @@ public class Game extends Data implements GameFunctions, Runnable, Miscellaneous
     private void showCookbook(Scanner userInput) {
         clearScreen();
         while (true) {
-            System.out.println("FIRST PAGE");
             
         }
     }
